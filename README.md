@@ -9,3 +9,6 @@ terdapat 10 lab komputer dengan masing-masing berjumlah 40 komputer dan
 terdapat 20 orang staff IT.
 
 ![Screenshot 2024-11-08 130214](https://github.com/user-attachments/assets/c6c874ca-4a76-4da6-b2a2-d08e7a90eea1)
+
+
+![Screenshot 2024-11-08 130401](https://github.com/user-attachments/assets/b558fd47-8746-4e7f-b43d-ae84a9c87289)
