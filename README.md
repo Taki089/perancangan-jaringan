@@ -13,7 +13,8 @@ terdapat 20 orang staff IT.
 
 ![Screenshot 2024-11-08 130401](https://github.com/user-attachments/assets/b558fd47-8746-4e7f-b43d-ae84a9c87289)
 
-1. Alokasi IP Network
+# 1. Alokasi IP Network
+```
 IP Network dan Prefix VLAN ID Divisi / Tempat
 192.168.1.0/24 - Router 1 - MLS 1
 192.168.2.0/24 - Router 1 - MLS 2
@@ -40,8 +41,10 @@ IP Network dan Prefix VLAN ID Divisi / Tempat
 172.16.45.0/24 VLAN 45 APL5
 172.16.46.0/24 VLAN 46 APL6n 
 172.16.47.0/24 VLAN 47 APL7
+```
 
-2. Alokasi IP Host
+# 2. Alokasi IP Host
+```
 Jenis Perangkat Nama Perangkat Interface IP Address Subnet Mask
 Router Router 1 Gig0/0 1.1.1.1/24 255.255.255.0
 Router Router 1 Gig0/1 192.168.1.1/24 255.255.255.0
@@ -73,11 +76,15 @@ Access Point APL4 172.16.44.1-253 255.255.255.0
 Access Point APL5 172.16.45.1-253 255.255.255.0
 Access Point APL6 172.16.46.1-253 255.255.255.0
 Access Point APL7 172.16.47.1-253 255.255.255.0
+```
 
-Tahapan konfigurasi pada Router Publik (R-PUBLIC) yaitu:
-1. Hostname
+# Tahapan konfigurasi pada Router Publik (R-PUBLIC) yaitu:
+## 1. Hostname
+```
 Hostname Router EDGE
-2. Setting Routing
+```
+## 2. Setting Routing
+```
 Router(config)#ip route 172.16.10.0 255.255.255.0 1.1.1.1
 Router(config)#ip route 172.16.21.0 255.255.255.0 1.1.1.1
 Router(config)#ip route 172.16.22.0 255.255.255.0 1.1.1.1
@@ -106,8 +113,10 @@ Router(config)#interface GigabitEthernet0/2
 Router(config-if)#no shutdown
 Router(config-if)#ip address 8.8.8.1 255.0.0.0
 Router(config-if)#ip address 8.8.8.1 255.255.255.0
+```
 
-4. Setting NAT
+## 4. Setting NAT
+```
 Router(config-if)#int gig0/0
 Router(config-if)#ip nat outside
 Router(config-if)#int gig0/1
@@ -115,8 +124,9 @@ Router(config-if)#ip nat inside
 Router(config-if)#int gig0/2
 Router(config-if)#ip nat outside
 Router(config-if)#ex
-
-B. Router
+```
+# B. Router
+```
 1. Hostname dan IP Address
 hostname R1 / R2
 interface GigabitEthernet0/0
@@ -125,16 +135,17 @@ interface GigabitEthernet0/1
 ip address 192.168.1.1 255.255.255.0
 interface GigabitEthernet0/2
 ip address 192.168.2.1 255.255.255.0
-
-2. Routing
+```
+##2. Routing
+```
 router ospf 1
 network 1.1.1.0 0.0.0.255 area 0
 network 192.168.1.0 0.0.0.255 area 0
 network 192.168.2.0 0.0.0.255 area 0
-
+```
 Tahapan konfigurasi pada SW-Core1
 yaitu:
-
+```
 1. Hostname dan IP address
 Switch#en
 Switch#hostname MLS1
@@ -184,8 +195,9 @@ interface Vlan47
 ip address 172.16.47.254 255.255.255.0
 interface Vlan99
 ip address 172.16.99.3 255.255.255.0
-
-2. VLAN, dst.
+```
+# 2. VLAN, dst.
+```
 MLS1
 Switch#en
 Switch#hostname MLS1
@@ -299,8 +311,9 @@ MLS1(dhcp-config)#ex
 MLS1(config)#ip dhcp pool APL7
 MLS1(dhcp-config)#default-router 172.16.47.254
 MLS1(dhcp-config)#network 172.16.47.0 255.255.255.0
-
-MLS2
+```
+## MLS2
+```
 Switch#en
 Switch#hostname MLS2
 MLS2(config)#vlan 21
@@ -405,10 +418,9 @@ MLS2(config-line)#exit
 MLS2(config)#int vlan 99
 MLS2(config-if)#ip add 172.16.99.5 255.255.255.0
 MLS2(config)#enable password 123
-
-Tahapan konfigurasi pada Switch Lab
-yaitu:
-
+```
+## Tahapan konfigurasi pada Switch Lab yaitu:
+```
 Switch>en
 Switch#conft
 Switch(config)#vlan 21
@@ -462,4 +474,5 @@ Switch(config-line)#transport input telnet
 Switch(config-line)#exit 
 Switch(config)#enable password 123
 Switch(config)#int vlan 99 
-Switch(config-if)#ip add 172.16.99.4 255.255.255.0 
+Switch(config-if)#ip add 172.16.99.4 255.255.255.0
+```
